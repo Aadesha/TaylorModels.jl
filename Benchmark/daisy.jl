@@ -37,10 +37,10 @@ f = Interval(1.0, 2.0)
 
 dom = a
 x = Taylor1(7)
-f = x - (x*x*x)/6.0 + (x*x*x*x*x)/120.0 - (x*x*x*x*x*x*x)/5040.0
-SUITE["Daisy"]["sin - evaluate"] = @benchmarkable evaluate($f, $dom)
+p = x - (x*x*x)/6.0 + (x*x*x*x*x)/120.0 - (x*x*x*x*x*x*x)/5040.0
+SUITE["Daisy"]["sin - evaluate"] = @benchmarkable evaluate($p, $dom)
 
-approx = evaluate(f, dom)
+approx = evaluate(p, dom)
 ref = Interval(-1.0002065, 2.72505)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
@@ -52,35 +52,35 @@ push!(RP, relprec)
 dom = a
 u = Taylor1(3)
 
-f = (1 - u) * (1 - u) * (1 - u) / 6.0
+p = (1 - u) * (1 - u) * (1 - u) / 6.0
 
-SUITE["Daisy"]["bspline0 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["bspline0 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 ref = Interval(0.3662865, 27.7256)
 
-f = (3 * u*u*u - 6 * u*u + 4) / 6.0
+p = (3 * u*u*u - 6 * u*u + 4) / 6.0
 
-SUITE["Daisy"]["bspline1 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["bspline1 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(-65.13665, 0.5630625)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 
-f = (-3 * u*u*u  + 3*u*u + 3*u + 1) / 6.0
+p = (-3 * u*u*u  + 3*u*u + 3*u + 1) / 6.0
 
-SUITE["Daisy"]["bspline2 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["bspline2 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(0.07399765, 53.59615)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 #=
-f = -u*u*u / 6.0
+p = -u*u*u / 6.0
 
-SUITE["Daisy"]["bspline3 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["bspline3 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval( )
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
@@ -93,11 +93,11 @@ dom = a×b×c
 
 v, u, T = set_variables(Float64,["v","u","T"],order = 4)
 
-f = (- ((331.4 + 0.6 * T)) *v) /
+p = (- ((331.4 + 0.6 * T)) *v) /
                             (((331.4 + 0.6 * T) + u)*((331.4 + 0.6 * T) + u))
 
-SUITE["Daisy"]["Doppler - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["Doppler - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(0.000887536, 0.0134537)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
@@ -109,10 +109,10 @@ push!(RP, relprec)
 dom = a×b
 x1, x2 = set_variables(Float64,["x1","x2"],order = 5)
 
-f = (x1*x1 + x2 - 11)*(x1 * x1 + x2 - 11) + (x1 + x2*x2 - 7)*(x1 + x2*x2 - 7)
+p = (x1*x1 + x2 - 11)*(x1 * x1 + x2 - 11) + (x1 + x2*x2 - 7)*(x1 + x2*x2 - 7)
 
-SUITE["Daisy"]["himmilbeau - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["himmilbeau - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(-2.58927, 110.461)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
@@ -124,22 +124,22 @@ push!(RP, relprec)
 dom = a×b×c×d×e×f
 x1, x2, x3, x4, x5, x6 = set_variables(Float64,["x1","x2","x3",
                                                 "x4","x5","x6"],order = 3)
-f =  x2 * x5 + x3 * x6 - x2 * x3 - x5 * x6
+p =  x2 * x5 + x3 * x6 - x2 * x3 - x5 * x6
                                    + x1 * (-x1 + x2 + x3 - x4 + x5 + x6)
 
-SUITE["Daisy"]["kepler0 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["kepler0 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(-11.8898, 28.6359)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 
 dom = a×b×c×d
 x1, x2, x3, x4 = set_variables(Float64,["x1","x2","x3","x4"],order = 3)
-f = x1 * x4 * (-x1 + x2 + x3 - x4) + x2 * (x1 - x2 + x3 + x4)
+p = x1 * x4 * (-x1 + x2 + x3 - x4) + x2 * (x1 - x2 + x3 + x4)
     + x3 * (x1 + x2 - x3 + x4) -x2 * x3 * x4 - x1 * x3 - x1 * x2 - x4
 
-SUITE["Daisy"]["kepler1 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["kepler1 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(-240.666, 162.141)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
@@ -147,12 +147,12 @@ push!(RP, relprec)
 dom = a×b×c×d×e×f
 x1, x2, x3, x4, x5, x6 = set_variables(Float64,["x1","x2","x3",
                                                 "x4","x5","x6"],order = 3)
-f =  x1 * x4 * (-x1 + x2 + x3 - x4 + x5 + x6)
+p =  x1 * x4 * (-x1 + x2 + x3 - x4 + x5 + x6)
     + x2 * x5 * (x1 - x2 + x3 + x4 - x5 + x6) +x3* x6 * (x1 + x2 - x3 + x4 + x5 - x6)
     - x2 * x3 * x4 -x1* x3* x5 - x1 * x2 * x6 - x4 * x5 * x6
 
-SUITE["Daisy"]["kepler2 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["kepler2 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(-604.201, 468.374)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
@@ -164,18 +164,18 @@ push!(RP, relprec)
 dom = a×b×c
 x1, x2, x3 = set_variables(Float64,["x1","x2","x3"], order = 3)
 
-f = -x1*x2 - 2*x2*x3 - x1 - x3
+p = -x1*x2 - 2*x2*x3 - x1 - x3
 
-SUITE["Daisy"]["Rigidbody1 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["Rigidbody1 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(-21.2701, -0.539999)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 
-f= 2*(x1*x2*x3) + (3*x3*x3) - x2*(x1*x2*x3) + (3*x3*x3) - x2
+p = 2*(x1*x2*x3) + (3*x3*x3) - x2*(x1*x2*x3) + (3*x3*x3) - x2
 
-SUITE["Daisy"]["Rigidbody2 - evaluate"] = @benchmarkable evaluate($f, $dom)
-approx = evaluate(f, dom)
+SUITE["Daisy"]["Rigidbody2 - evaluate"] = @benchmarkable evaluate($p, $dom)
+approx = evaluate(p, dom)
 ref = Interval(54.9599, 362.769)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
