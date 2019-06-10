@@ -44,7 +44,7 @@ approx = evaluate(p, dom)
 ref = Interval(-1.0002065, 2.72505)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
-
+#=
 # ==========
 # bspline
 # ==========
@@ -85,6 +85,7 @@ ref = Interval( )
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 =#
+
 # ==========
 # Doppler
 # ==========
@@ -135,8 +136,8 @@ push!(RP, relprec)
 
 dom = a×b×c×d
 x1, x2, x3, x4 = set_variables(Float64,["x1","x2","x3","x4"],order = 3)
-p = x1 * x4 * (-x1 + x2 + x3 - x4) + x2 * (x1 - x2 + x3 + x4)
-    + x3 * (x1 + x2 - x3 + x4) -x2 * x3 * x4 - x1 * x3 - x1 * x2 - x4
+p = x1 * x4 * (-x1 + x2 + x3 - x4) + x2 * (x1 - x2 + x3 + x4) +
+     x3 * (x1 + x2 - x3 + x4) -x2 * x3 * x4 - x1 * x3 - x1 * x2 - x4
 
 SUITE["Daisy"]["kepler1 - evaluate"] = @benchmarkable evaluate($p, $dom)
 approx = evaluate(p, dom)
@@ -147,9 +148,9 @@ push!(RP, relprec)
 dom = a×b×c×d×e×f
 x1, x2, x3, x4, x5, x6 = set_variables(Float64,["x1","x2","x3",
                                                 "x4","x5","x6"],order = 3)
-p =  x1 * x4 * (-x1 + x2 + x3 - x4 + x5 + x6)
-    + x2 * x5 * (x1 - x2 + x3 + x4 - x5 + x6) +x3* x6 * (x1 + x2 - x3 + x4 + x5 - x6)
-    - x2 * x3 * x4 -x1* x3* x5 - x1 * x2 * x6 - x4 * x5 * x6
+p =  x1 * x4 * (-x1 + x2 + x3 - x4 + x5 + x6) +
+     x2 * x5 * (x1 - x2 + x3 + x4 - x5 + x6) +x3* x6 * (x1 + x2 - x3 + x4 + x5 - x6) -
+     x2 * x3 * x4 -x1* x3* x5 - x1 * x2 * x6 - x4 * x5 * x6
 
 SUITE["Daisy"]["kepler2 - evaluate"] = @benchmarkable evaluate($p, $dom)
 approx = evaluate(p, dom)
@@ -179,3 +180,4 @@ approx = evaluate(p, dom)
 ref = Interval(54.9599, 362.769)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
+=#
