@@ -34,7 +34,7 @@ f = Interval(1.0, 2.0)
 # ==========
 # sine
 # ==========
-
+#=
 dom = a
 x = Taylor1(7)
 p = x - (x*x*x)/6.0 + (x*x*x*x*x)/120.0 - (x*x*x*x*x*x*x)/5040.0
@@ -44,7 +44,7 @@ approx = evaluate(p, dom)
 ref = Interval(-1.0002065, 2.72505)
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
-#=
+
 # ==========
 # bspline
 # ==========
@@ -85,7 +85,7 @@ ref = Interval( )
 relprec = relative_precision(approx, ref)
 push!(RP, relprec)
 =#
-
+=#
 # ==========
 # Doppler
 # ==========
@@ -161,7 +161,7 @@ push!(RP, relprec)
 # =========
 # Rigidbody
 # =========
-
+#=
 dom = a×b×c
 x1, x2, x3 = set_variables(Float64,["x1","x2","x3"], order = 3)
 
